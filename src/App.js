@@ -8,15 +8,25 @@ import Signin from "./routes/Signin";
 //import EditArticle from "./routes/EditArticle";
 //import CreateArticle from "./routes/CreateArticle";
 
+const API_PATH = "https://polar-depths-85779.herokuapp.com/"
+
 function App() {
   const [user, setUser] = useState();
+
+  useEffect(() => {
+    // todo: search and load a token //  set up user value
+    return () => {
+      
+    }
+  }, []);
+  
   return (
     <BrowserRouter>
       <Header user={user}/>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />}/>
-        <Route path="/signin" element={<Signin />} />
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/login" element={<Login />}/>
+        <Route exact path="/signin" element={<Signin />} />
       </Routes>
     </BrowserRouter>
   );
