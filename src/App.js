@@ -29,9 +29,9 @@ function App() {
     <BrowserRouter>
       <Header user={user}/>
       <Routes>
-        <Route exact path="/" element={<Home />} />
+        <Route exact path="/" element={<Home user={user}/>} />
         <Route exact path="/login" element={<Login setUpUser={handleUser} user={user}/>}/>
-        <Route exact path="/signin" element={<Signin />} />
+        <Route exact path="/signin" element={<Signin user={user}/>} />
       </Routes>
     </BrowserRouter>
   );

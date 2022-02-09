@@ -4,7 +4,10 @@ import LoginError from "../components/loginError";
 
 const axios = require("axios");
 
-const API_PATH = "https://polar-depths-85779.herokuapp.com/apiv1/"
+const api = axios.create({
+    baseURL: "https://polar-depths-85779.herokuapp.com/apiv1/",
+    timeout: 1000
+});
 
 const Login  = ({ setUpUser, user }) => {
     // 1. component states
@@ -22,10 +25,8 @@ const Login  = ({ setUpUser, user }) => {
 
     const handleLogin = async (event) => {
         event.preventDefault()
-
-        const apiroute = API_PATH + "log-in/";
         try{
-            const user = await axios.post(apiroute, {username, password});
+            const user = await api.post("/log-in",{username, password})
             setError(false)
             setUsername("");
             setPassword("")
