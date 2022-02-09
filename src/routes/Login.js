@@ -1,14 +1,18 @@
 import React, { useState} from "react";
 import { Navigate } from "react-router-dom";
+import LoginError from "../components/loginError";
+
 const axios = require("axios");
 
 const API_PATH = "https://polar-depths-85779.herokuapp.com/apiv1/"
 
 const Login  = ({ setUpUser, user }) => {
+    // 1.
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState(""); 
     const [error, setError] = useState(false);
 
+    // 2. handle render and states functions
     const handleUsername = (event) => {
         setUsername(event.target.value);
     }
@@ -18,26 +22,27 @@ const Login  = ({ setUpUser, user }) => {
 
     const handleLogin = async (event) => {
         event.preventDefault()
+
         const apiroute = API_PATH + "log-in/";
-        const user = await axios.post(apiroute, {username, password});
-        if (!user) { 
-            // failure, show error message
-            setError(true)
-        } else {
-            // if login is succesfull set up the token and redirect to /home
+        try{
+            const user = await axios.post(apiroute, {username, password});
             setError(false)
+            setUsername("");
+            setPassword("")
             setUpUser(user.data.token);
-            
+        }catch(err) {
+            setError(true)
         }
     }
     
-    // component output!
+    // 3. component output!
     if (user) {
         return <Navigate to="/" replace />
     } else {
         return (
             <div>
                 <h1>login form!</h1>
+                <LoginError error={error} />
                 <form action="#" onSubmit={handleLogin}>
                     <label>
                         Username: 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter , Routes, Route, Redirect } from "react-router-dom";
+import { BrowserRouter , Routes, Route } from "react-router-dom";
 import Header from "./_header";
 import Home from "./routes/Home";
 import Login from "./routes/Login";
@@ -30,9 +30,7 @@ function App() {
       <Header user={user}/>
       <Routes>
         <Route exact path="/" element={<Home />} />
-
         <Route exact path="/login" element={<Login setUpUser={handleUser} user={user}/>}/>
-
         <Route exact path="/signin" element={<Signin />} />
       </Routes>
     </BrowserRouter>
