@@ -1,13 +1,17 @@
 import React, { useState} from "react";
 import { Navigate } from "react-router-dom";
 const axios = require("axios");
+const api = axios.create({
+    baseURL: "https://polar-depths-85779.herokuapp.com/apiv1/",
+    timeout: 1000
+});
 
 const Signin  = ({ user }) => {
     // 1. component states.
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [repPassword, setRepPassword] = useState("");
-    const [firsName, setFistName] = useState("");
+    const [firstName, setFirstName] = useState("");
     const [secondName, setSeconName] = useState("");
     const [error, setError] = useState("");
     // 2. render and states functions.
@@ -21,7 +25,7 @@ const Signin  = ({ user }) => {
         setRepPassword(event.target.value)
     }
     const handleFirstName = (event) => {
-        setFistName(event.target.value)
+        setFirstName(event.target.value)
     }
     const handleSecondName = (event) => {
         setSeconName(event.target.value)
@@ -29,6 +33,25 @@ const Signin  = ({ user }) => {
 
     const handleSignin = async (event) => {
         event.preventDefault();
+        try {
+            const userForm = {
+                username,
+                password,
+                repeat_password: repPassword,
+                firstName,
+                secondName
+            }
+            // eslint-disable-next-line no-unused-vars
+            const user = await api.post("/sign-in", userForm);
+            setUsername("");
+            setPassword("");
+            setRepPassword("");
+            setFirstName("");
+            setSeconName("");
+            // The signin was a success, redirect to home!
+        } catch(err) {
+            setError(err.response.data.error)
+        }
     }
 
     // 3. Handle output.
@@ -55,7 +78,7 @@ const Signin  = ({ user }) => {
                     <hr></hr>
                     <label>
                         First name:
-                        <input type="text" value={firsName} onChange={handleFirstName}/>
+                        <input type="text" value={firstName} onChange={handleFirstName}/>
                     </label>
                     <label>
                         Second name:
