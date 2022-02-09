@@ -20,7 +20,7 @@ function App() {
     }
   }, []);
 
-  const handleUser = (userInfo) => {
+  const handleUser = (userToken) => {
     // todo set up userINfo as user and set up the token on the browser!
     // call the api for user info!
     setUser("loged in")
