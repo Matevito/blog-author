@@ -10,9 +10,11 @@ const _header = ({user}) => {
             </ul>
         )
     } else {
+        // think on the edit author and logout logic
         return (
             <ul>
-                <li><Link to="">home</Link></li>
+                <li><Link to="/">home</Link></li>
+
                 <li><Link to="">Edit author info</Link></li>
                 <li><Link to="">log out</Link></li>
             </ul>
