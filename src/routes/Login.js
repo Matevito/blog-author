@@ -7,7 +7,7 @@ const axios = require("axios");
 const API_PATH = "https://polar-depths-85779.herokuapp.com/apiv1/"
 
 const Login  = ({ setUpUser, user }) => {
-    // 1.
+    // 1. component states
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState(""); 
     const [error, setError] = useState(false);
@@ -41,7 +41,7 @@ const Login  = ({ setUpUser, user }) => {
     } else {
         return (
             <div>
-                <h1>login form!</h1>
+                <h1>log-in form!</h1>
                 <LoginError error={error} />
                 <form action="#" onSubmit={handleLogin}>
                     <label>
