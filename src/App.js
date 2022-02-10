@@ -20,28 +20,32 @@ function App() {
 
   useEffect(() => {
     const getUserInfo = async (token) => {
-      const config = {
-        headers: {
-          "auth-token": token
-        }
-      }
       try {
+        const config = {
+          headers: {
+            "auth-token": token
+          }
+        }
         const userInfo = await api.get("/whoami", config);
         const userResponse = userInfo.data.data;
-        return {
+        let userApiInfo = {
           username: userResponse.username,
           id: userResponse.id,
           token
         }
+        // set up user in the app!
+        setUser(userApiInfo)
       } catch (err) {
+        // invalid token, erase it from localstorage
+        localStorage.removeItem("blogToken");
         return console.log(err.response.data)
       }
     }
 
+    // if theres a token in localstorage set up the user!
     if (localStorage.getItem("blogToken")) {
       let userToken = localStorage.getItem("blogToken")
-      let userApiInfo = getUserInfo(userToken);
-      setUser(userApiInfo);
+      getUserInfo(userToken);
     }
     return () => {
       
