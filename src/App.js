@@ -19,7 +19,30 @@ function App() {
   const [user, setUser] = useState();
 
   useEffect(() => {
-    // todo: search and load a token //  set up user value
+    const getUserInfo = async (token) => {
+      const config = {
+        headers: {
+          "auth-token": token
+        }
+      }
+      try {
+        const userInfo = await api.get("/whoami", config);
+        const userResponse = userInfo.data.data;
+        return {
+          username: userResponse.username,
+          id: userResponse.id,
+          token
+        }
+      } catch (err) {
+        return console.log(err.response.data)
+      }
+    }
+
+    if (localStorage.getItem("blogToken")) {
+      let userToken = localStorage.getItem("blogToken")
+      let userApiInfo = getUserInfo(userToken);
+      setUser(userApiInfo);
+    }
     return () => {
       
     }
@@ -36,7 +59,7 @@ function App() {
       }
       const userInfo = await api.get("/whoami", config);
       const userResponse = userInfo.data.data
-      
+
       // cause everything is fine we can save the token on the storage
       localStorage.setItem("blogToken", userToken)
 
