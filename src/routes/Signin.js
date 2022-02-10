@@ -1,5 +1,6 @@
 import React, { useState} from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+import SigninError from "../components/signinError";
 const axios = require("axios");
 const api = axios.create({
     baseURL: "https://polar-depths-85779.herokuapp.com/apiv1/",
@@ -14,6 +15,7 @@ const Signin  = ({ user }) => {
     const [firstName, setFirstName] = useState("");
     const [secondName, setSeconName] = useState("");
     const [error, setError] = useState();
+        // const to return to home once a user is created successfully!
     const navigate = useNavigate();
 
     // 2. render and states functions.
@@ -55,7 +57,7 @@ const Signin  = ({ user }) => {
             cleanForm();
             navigate("/");
             // The signin was a success, redirect to home!
-        } catch(err) {
+        } catch (err) {
             setError(err.response.data)
         }
     }
@@ -64,10 +66,10 @@ const Signin  = ({ user }) => {
     if (user) {
         return <Navigate to="/" replace />
     } else {
-        //todo: handle errors.
         return (
             <div>
                 <h1>Sign-in form!</h1>
+                <SigninError error={error} />
                 <form action="#" onSubmit={handleSignin}>
                     <label>
                         Username:
