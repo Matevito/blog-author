@@ -77,9 +77,14 @@ function App() {
       console.log(err.response.data)
     }
   }
+
+  const handleLogout = () => {
+    localStorage.removeItem("blogToken")
+    setUser()
+  }
   return (
     <BrowserRouter>
-      <Header user={user}/>
+      <Header user={user} logout={handleLogout}/>
       <Routes>
         <Route exact path="/" element={<Home user={user}/>} />
         <Route exact path="/login" element={<Login setUpUser={handleUser} user={user}/>}/>

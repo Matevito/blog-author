@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const _header = ({user}) => {
+const _header = ({user, logout}) => {
     if (!user) {
         return (
             <ul>
@@ -16,7 +16,7 @@ const _header = ({user}) => {
                 <li><Link to="/">home</Link></li>
 
                 <li><Link to="">Edit author info</Link></li>
-                <li><Link to="">log out</Link></li>
+                <li><Link to="" onClick={logout}>log out</Link></li>
             </ul>
         )
     }
