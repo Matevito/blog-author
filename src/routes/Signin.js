@@ -1,5 +1,5 @@
 import React, { useState} from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 const axios = require("axios");
 const api = axios.create({
     baseURL: "https://polar-depths-85779.herokuapp.com/apiv1/",
@@ -13,7 +13,9 @@ const Signin  = ({ user }) => {
     const [repPassword, setRepPassword] = useState("");
     const [firstName, setFirstName] = useState("");
     const [secondName, setSeconName] = useState("");
-    const [error, setError] = useState("");
+    const [error, setError] = useState();
+    const navigate = useNavigate();
+
     // 2. render and states functions.
     const handleUsername = (event) => {
         setUsername(event.target.value);
@@ -30,7 +32,14 @@ const Signin  = ({ user }) => {
     const handleSecondName = (event) => {
         setSeconName(event.target.value)
     }
-
+    const cleanForm = () => {
+        setUsername("");
+        setPassword("");
+        setRepPassword("");
+        setFirstName("");
+        setSeconName("");
+        setError();
+    }
     const handleSignin = async (event) => {
         event.preventDefault();
         try {
@@ -43,14 +52,11 @@ const Signin  = ({ user }) => {
             }
             // eslint-disable-next-line no-unused-vars
             const user = await api.post("/sign-in", userForm);
-            setUsername("");
-            setPassword("");
-            setRepPassword("");
-            setFirstName("");
-            setSeconName("");
+            cleanForm();
+            navigate("/");
             // The signin was a success, redirect to home!
         } catch(err) {
-            setError(err.response.data.error)
+            setError(err.response.data)
         }
     }
 
