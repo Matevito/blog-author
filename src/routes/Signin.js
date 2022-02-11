@@ -50,7 +50,7 @@ const Signin  = ({ user }) => {
                 secondName
             }
             // eslint-disable-next-line no-unused-vars
-            const user = await api.post("/sign-in", userForm);
+            const createdUser = await api.post("/sign-in", userForm);
             cleanForm();
             navigate("/");
             // The signin was a success, redirect to home!

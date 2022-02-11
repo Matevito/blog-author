@@ -63,6 +63,11 @@ const Home  = ({ user }) => {
                                 Create new article!
                             </Link>
                         </Button>
+                        <div>
+                            <ul>
+                                <li>todo: list of articles of the user</li>
+                            </ul>
+                        </div>
                     </Box>
                 </Grid>
             </Grid>
