@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-
+import { Link } from "react-router-dom";
+import { Box, Grid, Typography, Button } from "@mui/material";
+import ArticleCard from "../components/ArticleCard";
 import api from "../components/api"
 
 const Home  = ({ user }) => {
@@ -38,9 +40,32 @@ const Home  = ({ user }) => {
         )
     } else {
         return (
-            <div>
-                <h1>User loged in!</h1>
-            </div>
+            <Grid container justifyContent="center">
+                <Grid item xs={10}>
+                    <Box
+                        xs={{
+                            marginTop:8,
+                            display:"flex",
+                            flexDirection:"column",
+                            alignItems:"center"
+                        }}
+                    >
+                        <p></p>
+                        <Typography component="h1" variant="h5">
+                        Wellcome back, {user.username}!
+                        </Typography>
+
+                        <Button 
+                            variant="contained"
+                            fullWidth
+                        >
+                            <Link to="/article/create" style={{ color: "inherit", textDecoration: 'none' }}>
+                                Create new article!
+                            </Link>
+                        </Button>
+                    </Box>
+                </Grid>
+            </Grid>
         )
     }
 }
