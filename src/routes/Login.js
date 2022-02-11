@@ -39,7 +39,7 @@ const Login  = ({ setUpUser, user }) => {
                 <Grid container justifyContent="center">
                     <Grid item xs={6}>
                     <Box
-                        xs={{
+                        sx={{
                             marginTop:8,
                             display:"flex",
                             flexDirection: "column",

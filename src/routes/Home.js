@@ -43,11 +43,12 @@ const Home  = ({ user }) => {
             <Grid container justifyContent="center">
                 <Grid item xs={10}>
                     <Box
-                        xs={{
-                            marginTop:8,
+                        sx={{
+                            marginTop:2,
                             display:"flex",
                             flexDirection:"column",
-                            alignItems:"center"
+                            alignItems:"center",
+                            alignText:"center"
                         }}
                     >
                         <p></p>

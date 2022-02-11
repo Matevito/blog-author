@@ -32,7 +32,7 @@ function App() {
         setUser(userApiInfo)
       } catch (err) {
         // invalid token, erase it from localstorage
-        localStorage.removeItem("blogToken");
+        //localStorage.removeItem("blogToken");
         return console.log(err.response.data)
       }
     }
