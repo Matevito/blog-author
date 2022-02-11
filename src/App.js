@@ -6,7 +6,6 @@ import Login from "./routes/Login";
 import Signin from "./routes/Signin";
 //import EditArticle from "./routes/EditArticle";
 //import CreateArticle from "./routes/CreateArticle";
-//todo: edit user profile data!
 
 const axios = require("axios");
 const api = axios.create({
@@ -82,6 +81,7 @@ function App() {
     localStorage.removeItem("blogToken")
     setUser()
   }
+  
   return (
     <BrowserRouter>
       <Header user={user} logout={handleLogout}/>
