@@ -7,11 +7,7 @@ import Signin from "./routes/Signin";
 //import EditArticle from "./routes/EditArticle";
 //import CreateArticle from "./routes/CreateArticle";
 
-const axios = require("axios");
-const api = axios.create({
-  baseURL: "https://polar-depths-85779.herokuapp.com/apiv1/",
-  timeout: 1000
-});
+import api from "./components/api";
 
 function App() {
   // object structure: {id, username, token}

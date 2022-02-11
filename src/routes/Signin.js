@@ -2,11 +2,7 @@ import React, { useState} from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import SigninError from "../components/signinError";
 import { Box, Grid, Typography, TextField, Button} from "@mui/material";
-const axios = require("axios");
-const api = axios.create({
-    baseURL: "https://polar-depths-85779.herokuapp.com/apiv1/",
-    timeout: 1000
-});
+import api from "../components/api";
 
 const Signin  = ({ user }) => {
     // 1. component states.
