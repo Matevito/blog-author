@@ -1,6 +1,7 @@
 import React, { useState} from "react";
 import { Navigate } from "react-router-dom";
 import LoginError from "../components/loginError";
+import { Box, Grid, Typography, TextField, Button} from "@mui/material";
 
 const axios = require("axios");
 
@@ -41,22 +42,37 @@ const Login  = ({ setUpUser, user }) => {
         return <Navigate to="/" replace />
     } else {
         return (
-            <div>
-                <h1>log-in form!</h1>
-                <LoginError error={error} />
-                <form action="#" onSubmit={handleLogin}>
-                    <label>
-                        Username: 
-                        <input type="text" value={username} onChange={handleUsername}/>
-                    </label>
-                    <label>
-                        Password: 
-                        <input type="password" value={password} onChange={handlePassword}/>
-                    </label>
-                    <hr></hr>
-                    <button type="submit">Submit</button>
-                </form>
-            </div>
+                <Grid container justifyContent="center">
+                    <Grid item xs={6}>
+                    <Box
+                        xs={{
+                            marginTop:8,
+                            display:"flex",
+                            flexDirection: "column",
+                            alignItems:"center"
+                        }}
+                    >
+                        <p></p>
+                        <Typography component="h1" variant="h5">
+                            Log in to the App!
+                        </Typography>
+                        <LoginError error={error} />
+                        <p></p>
+                        <form action="#" onSubmit={handleLogin}>
+                            <TextField fullWidth label="Username" defaultValue={username} onChange={handleUsername}></TextField>
+                            <TextField fullWidth label="Password" type="password" value={password} onChange={handlePassword}/>
+                            
+                            <Button 
+                                variant="contained"
+                                type="submit"
+                                fullWidth
+                            >
+                            Submit
+                            </Button>
+                        </form>
+                    </Box>
+                    </Grid>
+                </Grid>
         )
     }
 }

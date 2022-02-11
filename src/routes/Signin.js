@@ -1,6 +1,7 @@
 import React, { useState} from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import SigninError from "../components/signinError";
+import { Box, Grid, Typography, TextField, Button} from "@mui/material";
 const axios = require("axios");
 const api = axios.create({
     baseURL: "https://polar-depths-85779.herokuapp.com/apiv1/",
@@ -67,35 +68,39 @@ const Signin  = ({ user }) => {
         return <Navigate to="/" replace />
     } else {
         return (
-            <div>
-                <h1>Sign-in form!</h1>
-                <SigninError error={error} />
-                <form action="#" onSubmit={handleSignin}>
-                    <label>
-                        Username:
-                        <input type="text" value={username} onChange={handleUsername}/>
-                    </label>
-                    <label>
-                        Password:
-                        <input type="password" value={password} onChange={handlePassword}/>
-                    </label>
-                    <label>
-                        Repeat Password:
-                        <input type="password" value={repPassword} onChange={handleRepPassword} />
-                    </label>
-                    <hr></hr>
-                    <label>
-                        First name:
-                        <input type="text" value={firstName} onChange={handleFirstName}/>
-                    </label>
-                    <label>
-                        Second name:
-                        <input type="text" value={secondName} onChange={handleSecondName}/>
-                    </label>
-                    <hr></hr>
-                    <button type="submit">Submit</button>
-                </form>
-            </div>
+            <Grid container justifyContent="center">
+                <Grid item xs={6}>
+                    <Box
+                        xs={{
+                            marginTop: 8,
+                            display:"flex",
+                            flexDirection: "column",
+                            alignItems:"center"
+                        }}
+                    >
+                        <p></p>
+                        <Typography component="h1" variant="h5">
+                            Sign in!
+                        </Typography>
+                        <SigninError error={error} />
+                        <p></p>
+                        <form action="#" onSubmit={handleSignin}>
+                            <TextField fullWidth label="username" defaultValue={username} onChange={handleUsername}/>
+                            <TextField fullWidth type="password" label="password" defaultValue={password} onChange={handlePassword}/>
+                            <TextField fullWidth type="password" label="repeat password" defaultValue={repPassword} onChange={handleRepPassword}/>
+                            <TextField fullWidth label="first name" defaultValue={firstName} onChange={handleFirstName}/>
+                            <TextField fullWidth label="second name" defaultValue={secondName} onChange={handleSecondName}/>
+                            <Button 
+                                variant="contained"
+                                type="submit"
+                                fullWidth
+                            >
+                            Submit
+                            </Button>
+                        </form>
+                    </Box>
+                </Grid>
+            </Grid>
         )
     }
 }
