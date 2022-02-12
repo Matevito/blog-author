@@ -27,9 +27,6 @@ const Home  = ({ user }) => {
             getArticles(userToken);
         };
 
-        return () => {
-            setArticles([]);
-        }
     }, [user])
 
     if (!user) {
@@ -64,11 +61,17 @@ const Home  = ({ user }) => {
                                 Create new article!
                             </Link>
                         </Button>
-                        <div>
-                            <ul>
-                                <li>todo: list of articles of the user</li>
-                            </ul>
-                        </div>
+                        <Box
+                            sx={{
+                                marinTop:2,
+                                display:"flex",
+                                flexDirection:"column",
+                                alignItems:"center",
+                                alignText:"center"
+                            }}
+                        >
+                            {articles.map((article) => <ArticleCard key={article._id} post={article}/>)}
+                        </Box>
                     </Box>
                 </Grid>
             </Grid>

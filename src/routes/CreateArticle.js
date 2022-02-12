@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Grid, Typography } from "@mui/material";
 import ArticleForm from "../components/ArticleForm";
+import ArticleError from "../components/articleError";
 import api from "../components/api";
 
 const CreateArticle = ({ user }) => {
@@ -13,8 +14,7 @@ const CreateArticle = ({ user }) => {
     const postArticle = async (article) => {
         // 1. adding id value required to article object
         // structure: {id, title, text}
-        //article.id = user.id
-        console.log(article)
+        
         // 2. attempt to publish the article
         try{
             let config = {
@@ -27,7 +27,7 @@ const CreateArticle = ({ user }) => {
             console.log(publishedArt)
             navigate("/")
         } catch (err) {
-            setError(err);
+            setError(err.response.data);
         }
     }
 
@@ -54,7 +54,7 @@ const CreateArticle = ({ user }) => {
                         <Typography component="h1" variant="h5">
                             Create a new article, {user.username}!
                         </Typography>
-                        <div>todo: Errors on the form</div>
+                        <ArticleError error={error}/>
                         <ArticleForm handleForm={postArticle} userId={user.id} />
                     </Box>
                     

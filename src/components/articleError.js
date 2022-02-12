@@ -10,6 +10,7 @@ const articleError = ({ error }) => {
                 <Alert variant="outlined" severity="error">
                     {msgError}
                 </Alert>
+                <p></p>
             </Stack>
         )
     }
