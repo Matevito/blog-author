@@ -13,8 +13,8 @@ const CreateArticle = ({ user }) => {
     const postArticle = async (article) => {
         // 1. adding id value required to article object
         // structure: {id, title, text}
-        article.id = user.id
-
+        //article.id = user.id
+        console.log(article)
         // 2. attempt to publish the article
         try{
             let config = {
@@ -23,12 +23,11 @@ const CreateArticle = ({ user }) => {
                 }
             }
             // make the post request
-            const publishedArt = await api.post("/post", article, config);
-            console.log(publishedArt.data);
+            const publishedArt = await api.post('/post', article, config);
+            console.log(publishedArt)
             navigate("/")
         } catch (err) {
-            setError(err.response.data);
-            console.log(err.response.data)
+            setError(err);
         }
     }
 
@@ -39,7 +38,6 @@ const CreateArticle = ({ user }) => {
         )
     } else {
         return (
-            <>
             <Grid container justifyContent="center">
                 <Grid item xs={10}>
                     <p></p>
@@ -53,14 +51,15 @@ const CreateArticle = ({ user }) => {
                             textAlign: "center"
                         }}
                     >
-                        Create article!
-                        <div>Errors on the form</div>
+                        <Typography component="h1" variant="h5">
+                            Create a new article, {user.username}!
+                        </Typography>
+                        <div>todo: Errors on the form</div>
                         <ArticleForm handleForm={postArticle} userId={user.id} />
                     </Box>
                     
                 </Grid>
             </Grid>
-            </>
         )
     }
 }
