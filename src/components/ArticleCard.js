@@ -54,6 +54,9 @@ export default function ArticleCard({ post, userToken, refresh }) {
             <Button onClick={handleDelete}>
                 delete
             </Button>
+            <Button>
+                Comments
+            </Button>
             <Button onClick={handlePublish}>
                 {post.published ? <>unpublish</> : <>publish</>}
             </Button>

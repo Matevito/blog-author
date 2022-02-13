@@ -77,7 +77,7 @@ const EditArticle = ({ user }) => {
                         }}
                     >
                         <Typography component="h1" variant="h5">
-                            Edit the article, {user.username}!
+                            Edit article form
                         </Typography>
                         <ArticleError error={error}/>
                         <ArticleForm article={article} handleForm={editArticle}/>
