@@ -25,8 +25,22 @@ const Home  = ({ user }) => {
             let userToken = user.token;
             getArticles(userToken);
         };
+        
+    }, [articles, user])
 
-    }, [user])
+    const handleRefresh = async () => {
+        try {
+            const config = {
+                headers: {
+                    "auth-token": user.token
+                }
+            };
+            const articlesList = await api.get(`/user/${user.id}/posts`, config);
+            setArticles(articlesList.data.data)
+        } catch (err) {
+            return console.log(err)
+        }
+    }
     if (!user) {
         return (
             <div>
@@ -68,7 +82,7 @@ const Home  = ({ user }) => {
                                 alignText:"center"
                             }}
                         >
-                            {articles.map((article) => <ArticleCard key={article._id} post={article} userToken={user.token}/>)}
+                            {articles.map((article) => <ArticleCard key={article._id} post={article} userToken={user.token} refresh={handleRefresh}/>)}
                         </Box>
                     </Box>
                 </Grid>

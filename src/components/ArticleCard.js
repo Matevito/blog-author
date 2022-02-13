@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Card, Typography, Button } from "@mui/material";
 import api from "./api";
 
-export default function ArticleCard({ post, userToken, publish }) {
+export default function ArticleCard({ post, userToken, refresh }) {
     const handlePublish = async () => {
         try {
             const config = {
@@ -13,9 +13,13 @@ export default function ArticleCard({ post, userToken, publish }) {
             }
             const response = await api.put(`/post/${post._id}/publish`, {}, config);
             console.log(response)
+            refresh()
         } catch (err) {
             console.log(err)
         }
+    }
+    const handleDelete = async () => {
+        //todo:
     }
     return (
         <>
@@ -32,7 +36,7 @@ export default function ArticleCard({ post, userToken, publish }) {
             <Button>
                 edit
             </Button>
-            <Button>
+            <Button onClick={handleDelete}>
                 delete
             </Button>
             <Button onClick={handlePublish}>
