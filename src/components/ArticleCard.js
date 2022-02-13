@@ -4,6 +4,7 @@ import { Card, Typography, Button } from "@mui/material";
 import api from "./api";
 
 export default function ArticleCard({ post, userToken, refresh }) {
+    const navigate = useNavigate();
     const handlePublish = async () => {
         try {
             const config = {
@@ -32,6 +33,9 @@ export default function ArticleCard({ post, userToken, refresh }) {
             console.log(err)
         }
     }
+    const handleEdit = () => {
+        navigate(`/article/${post._id}`)
+    }
     return (
         <>
         <Card>
@@ -44,7 +48,7 @@ export default function ArticleCard({ post, userToken, refresh }) {
             <Typography>
                 <b>Publish status:</b> {post.published ? <>published</> : <>not published</>}
             </Typography>
-            <Button>
+            <Button onClick={handleEdit}>
                 edit
             </Button>
             <Button onClick={handleDelete}>

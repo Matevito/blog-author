@@ -5,7 +5,7 @@ import Home from "./routes/Home";
 import Login from "./routes/Login";
 import Signin from "./routes/Signin";
 import CreateArticle from "./routes/CreateArticle";
-//import EditArticle from "./routes/EditArticle";
+import EditArticle from "./routes/EditArticle";
 
 import api from "./components/api";
 
@@ -86,6 +86,7 @@ function App() {
         <Route exact path="/login" element={<Login setUpUser={handleUser} user={user}/>}/>
         <Route exact path="/signin" element={<Signin user={user}/>} />
         <Route exact path="/article/create" element={<CreateArticle user={user} />} />
+        <Route path="/article/:id" element={<EditArticle user={user} />} />
       </Routes>
     </BrowserRouter>
   );
