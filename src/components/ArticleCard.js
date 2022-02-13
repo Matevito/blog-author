@@ -19,7 +19,18 @@ export default function ArticleCard({ post, userToken, refresh }) {
         }
     }
     const handleDelete = async () => {
-        //todo:
+        try {
+            const config = {
+                headers: {
+                    "auth-token": userToken
+                }
+            }
+            const response = await api.delete(`/post/${post._id}`, config);
+            console.log(response);
+            refresh()
+        } catch (err) {
+            console.log(err)
+        }
     }
     return (
         <>
