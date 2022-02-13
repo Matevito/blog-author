@@ -17,7 +17,7 @@ const Home  = ({ user }) => {
                 const articlesList = await api.get(`/user/${user.id}/posts`, config);
                 setArticles(articlesList.data.data)
             } catch (err) {
-                return console.log(err)
+                console.log(err)
             }
         };
         // if user is logged in, fetch user article list!

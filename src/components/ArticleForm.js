@@ -38,7 +38,7 @@ const ArticleForm = ({  article, handleForm }) => {
                 <TextField 
                     fullWidth
                     label="Title"
-                    defaultValue={title}
+                    value={title}
                     onChange={handleTitle}
                 />
                 <CKEditor
