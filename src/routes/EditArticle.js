@@ -35,6 +35,23 @@ const EditArticle = ({ user }) => {
             navigate("/")
         }
     }
+
+    const editArticle = async(article) => {
+        // article structure {title, text}
+        try {
+            let config = {
+                headers: {
+                    "auth-token": user.token
+                }
+            }
+            const editedArticle = await api.put(`/post/${id}`, article, config);
+            console.log(editedArticle)
+            navigate("/")
+        } catch (err) {
+            setError(err.response.data)
+        };
+    }
+
     if (!user) {
         return (
             <div>Loading gif...</div>
@@ -63,7 +80,7 @@ const EditArticle = ({ user }) => {
                             Edit the article, {user.username}!
                         </Typography>
                         <ArticleError error={error}/>
-                        <ArticleForm article={article}/>
+                        <ArticleForm article={article} handleForm={editArticle}/>
                     </Box>
                     
                 </Grid>
