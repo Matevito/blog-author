@@ -1,8 +1,22 @@
 import React from 'react'
+import { useNavigate } from "react-router-dom";
 import { Card, Typography, Button } from "@mui/material";
+import api from "./api";
 
-export default function ArticleCard({ post }) {
-    
+export default function ArticleCard({ post, userToken, publish }) {
+    const handlePublish = async () => {
+        try {
+            const config = {
+                headers: {
+                    "auth-token": userToken
+                }
+            }
+            const response = await api.put(`/post/${post._id}/publish`, {}, config);
+            console.log(response)
+        } catch (err) {
+            console.log(err)
+        }
+    }
     return (
         <>
         <Card>
@@ -21,7 +35,7 @@ export default function ArticleCard({ post }) {
             <Button>
                 delete
             </Button>
-            <Button>
+            <Button onClick={handlePublish}>
                 {post.published ? <>unpublish</> : <>publish</>}
             </Button>
         </Card>

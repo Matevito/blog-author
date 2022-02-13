@@ -13,7 +13,6 @@ const Home  = ({ user }) => {
                     headers: {
                         "auth-token": token
                     }
-
                 };
                 const articlesList = await api.get(`/user/${user.id}/posts`, config);
                 setArticles(articlesList.data.data)
@@ -28,7 +27,6 @@ const Home  = ({ user }) => {
         };
 
     }, [user])
-
     if (!user) {
         return (
             <div>
@@ -70,7 +68,7 @@ const Home  = ({ user }) => {
                                 alignText:"center"
                             }}
                         >
-                            {articles.map((article) => <ArticleCard key={article._id} post={article}/>)}
+                            {articles.map((article) => <ArticleCard key={article._id} post={article} userToken={user.token}/>)}
                         </Box>
                     </Box>
                 </Grid>
