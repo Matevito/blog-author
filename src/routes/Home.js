@@ -7,26 +7,27 @@ import api from "../components/api"
 const Home  = ({ user }) => {
     const [articles, setArticles] = useState([]);
     useEffect(() => {
-        const getArticles = async (token) => {
-            try {
-                const config = {
-                    headers: {
-                        "auth-token": token
-                    }
-                };
-                const articlesList = await api.get(`/user/${user.id}/posts`, config);
-                setArticles(articlesList.data.data)
-            } catch (err) {
-                console.log(err)
-            }
-        };
         // if user is logged in, fetch user article list!
         if (user) {
             let userToken = user.token;
             getArticles(userToken);
         };
         
-    }, [articles, user])
+    }, [])
+
+    const getArticles = async (token) => {
+        try {
+            const config = {
+                headers: {
+                    "auth-token": token
+                }
+            };
+            const articlesList = await api.get(`/user/${user.id}/posts`, config);
+            setArticles(articlesList.data.data)
+        } catch (err) {
+            console.log(err)
+        }
+    };
 
     const handleRefresh = async () => {
         try {

@@ -45,7 +45,7 @@ const Header = ({user, logout}) => {
 
                         <Grid item xs={2}>
                             <Button color="inherit">
-                                <Link to="#" style={{ color: "inherit", textDecoration: 'none' }}>{user.username} info</Link>
+                                <Link to="/user/edit" style={{ color: "inherit", textDecoration: 'none' }}>{user.username} info</Link>
                             </Button>
                         </Grid>
 
