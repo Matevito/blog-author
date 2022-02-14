@@ -8,6 +8,7 @@ const EditUserForm = ({ userData, handleForm }) => {
 
     useEffect(() => {
         if (userData) {
+            console.log(userData)
             setFirstName(userData.firstName);
             setSecondName(userData.secondName);
             setBio(userData.bio)

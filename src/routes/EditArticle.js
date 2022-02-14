@@ -61,7 +61,6 @@ const EditArticle = ({ user }) => {
             <div>Loading...</div>
         )
     } else {
-        console.log(article)
         return (
             <Grid container justifyContent="center">
                 <Grid item xs={10}>

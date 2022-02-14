@@ -13,7 +13,7 @@ const Home  = ({ user }) => {
             getArticles(userToken);
         };
         
-    }, [])
+    },[])
 
     const getArticles = async (token) => {
         try {
