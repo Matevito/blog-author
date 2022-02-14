@@ -7,6 +7,7 @@ import Signin from "./routes/Signin";
 import CreateArticle from "./routes/CreateArticle";
 import EditArticle from "./routes/EditArticle";
 import EditUser from "./routes/EditUser";
+import EditComments from "./routes/EditComments";
 
 import api from "./components/api";
 
@@ -88,7 +89,8 @@ function App() {
         <Route exact path="/signin" element={<Signin user={user}/>} />
         <Route exact path="/article/create" element={<CreateArticle user={user} />} />
         <Route path="/article/:id" element={<EditArticle user={user} />} />
-        <Route path="/user/edit" element={<EditUser user={user} />} />
+        <Route path="/article/:id/comments" element={<EditComments user={user}/>} />
+        <Route exact path="/user/edit" element={<EditUser user={user} />} />
       </Routes>
     </BrowserRouter>
   );

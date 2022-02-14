@@ -36,6 +36,9 @@ export default function ArticleCard({ post, userToken, refresh }) {
     const handleEdit = () => {
         navigate(`/article/${post._id}`)
     }
+    const handleGetComments = () => {
+        navigate(`article/${post._id}/comments`)
+    }
     return (
         <>
         <Card>
@@ -54,7 +57,7 @@ export default function ArticleCard({ post, userToken, refresh }) {
             <Button onClick={handleDelete}>
                 delete
             </Button >
-            <Button >
+            <Button onClick={handleGetComments}>
                 Comments
             </Button>
             <Button onClick={handlePublish}>
