@@ -2,22 +2,18 @@ import { useState, useEffect } from "react";
 import { Box, TextField, Button } from "@mui/material";
 
 const EditUserForm = ({ userData, handleForm }) => {
-    const [username, setUsername] = useState("")
     const [firstName, setFirstName] = useState("")
     const [secondName, setSecondName] = useState("")
     const [bio, setBio] = useState("")
 
     useEffect(() => {
         if (userData) {
-            setUsername(userData.username);
             setFirstName(userData.firstName);
             setSecondName(userData.secondName);
             setBio(userData.bio)
         }
     }, [])
-    const handleUsername = (event) => {
-        setUsername(event.target.value)
-    };
+
     const handleFirstName = (event) => {
         setFirstName(event.target.value)
     };
@@ -31,7 +27,6 @@ const EditUserForm = ({ userData, handleForm }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const userEdited = {
-            username,
             firstName,
             secondName,
             bio
@@ -41,13 +36,6 @@ const EditUserForm = ({ userData, handleForm }) => {
     return (
         <Box  pt={5}>
             <form onSubmit={handleSubmit}>
-                <TextField
-                    fullWidth
-                    label="username"
-                    value={username}
-                    onChange={handleUsername}
-                    sx={{ m: 0.5 }}
-                />
                 <TextField
                     fullWidth
                     label="first name"
@@ -75,7 +63,7 @@ const EditUserForm = ({ userData, handleForm }) => {
                     type="submit"
                     fullWidth
                     >
-                    edit {username} information!
+                    edit {userData.username} information!
                 </Button>
             </form>
         </Box>
